@@ -7,9 +7,8 @@ CREATE TABLE IF NOT EXISTS user_progress(
     FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
 );
 insertProgress:
-INSERT INTO user_progress (word_id, repetition_count, last_reviewed, success_rate)
-SELECT ?, 0, NULL, 0.0
-WHERE NOT EXISTS (SELECT 1 FROM user_progress WHERE word_id = ?);
+INSERT OR REPLACE INTO user_progress (word_id, repetition_count, last_reviewed, success_rate)
+VALUES (?, ?, ?, ?);
 
 -- 2. Получить прогресс по слову
 getProgressByWordId:
