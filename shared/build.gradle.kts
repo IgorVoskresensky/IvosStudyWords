@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqldelight.driver)
 }
 
 kotlin {
@@ -49,6 +50,14 @@ kotlin {
             implementation(libs.sqldelight.driver.native)
             implementation(libs.koin.core)
             implementation(libs.datastore)
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("IvosWordsDatabase") {
+            packageName.set("com.ivos.ivos_study_words.database")
         }
     }
 }
