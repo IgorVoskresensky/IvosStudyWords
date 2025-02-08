@@ -9,7 +9,7 @@ import org.koin.core.context.startKoin
 fun initKoin(context: Context) {
     startKoin {
         androidContext(context)
-        modules(commonModule + androidModule)
+        modules(commonModule + useCasesModule + viewModelsModule + androidModule)
     }
 }
 

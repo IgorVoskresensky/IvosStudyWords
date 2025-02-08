@@ -46,7 +46,7 @@ class WordsRepositoryImpl(db: IvosWordsDatabase) : WordsRepository {
                 word = word,
                 translation = translation,
                 languageCode = language_code,
-                exampleSentence = example_sentence,
+                exampleSentence = example_sentence ?: "",
                 createdAt = created_at,
             )
         }

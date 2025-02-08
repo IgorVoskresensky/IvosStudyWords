@@ -30,7 +30,7 @@ import org.koin.core.context.startKoin
 class KoinInitializer {
     fun doInitKoin() {
         startKoin {
-            modules(commonModule + iosModule)
+            modules(commonModule + useCasesModule  + iosModule)
         }
     }
 }

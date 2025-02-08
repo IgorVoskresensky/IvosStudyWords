@@ -29,8 +29,8 @@ class UserProgressRepositoryImpl(db: IvosWordsDatabase) : UserProgressRepository
         )
     }
 
-    override fun updateProgress(id: Long, progress: UserProgressModel) = queries.updateProgress(
-        word_id = id,
+    override fun updateProgress(progress: UserProgressModel) = queries.updateProgress(
+        word_id = progress.id,
         success_rate = progress.successRate
     )
 

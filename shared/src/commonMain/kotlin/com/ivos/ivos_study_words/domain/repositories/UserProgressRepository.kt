@@ -7,6 +7,6 @@ interface UserProgressRepository {
     fun getAllProgress(): Flow<List<UserProgressModel>>
     fun getProgressByWordId(id: Long): UserProgressModel?
     fun insertProgress(progress: UserProgressModel)
-    fun updateProgress(id: Long, progress: UserProgressModel)
+    fun updateProgress(progress: UserProgressModel)
     fun deleteProgressByWordId(id: Long)
 }
