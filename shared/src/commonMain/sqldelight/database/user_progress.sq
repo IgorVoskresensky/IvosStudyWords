@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS user_progress(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word_id INTEGER NOT NULL UNIQUE,
+    repetition_count INTEGER DEFAULT 0,
+    last_reviewed INTEGER,
+    success_rate REAL DEFAULT 0.0,
+    FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
+);
+insertProgress:
+INSERT OR REPLACE INTO user_progress (word_id, repetition_count, last_reviewed, success_rate)
+VALUES (?, ?, ?, ?);
+
+-- 2. Получить прогресс по слову
+getProgressByWordId:
+SELECT * FROM user_progress WHERE word_id = ?;
+
+-- 3. Получить весь прогресс (например, для статистики)
+getAllProgress:
+SELECT * FROM user_progress;
+
+-- 4. Обновить прогресс (например, после изучения слова)
+updateProgress:
+UPDATE user_progress
+SET repetition_count = repetition_count + 1,
+    last_reviewed = CURRENT_TIMESTAMP,
+    success_rate = ?
+WHERE word_id = ?;
+
+-- 5. Удалить прогресс по слову (например, если пользователь хочет начать заново)
+deleteProgressByWordId:
+DELETE FROM user_progress WHERE word_id = ?;
+
