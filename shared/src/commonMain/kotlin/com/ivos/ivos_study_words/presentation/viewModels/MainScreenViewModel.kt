@@ -35,7 +35,7 @@ class MainScreenViewModel(
         combineFlows()
     }
 
-    fun reduce(event: MainScreenStateUserEvent) {
+    fun produceState(event: MainScreenStateUserEvent) {
         when (event) {
             is MainScreenStateUserEvent.AddNewWord -> insertWordUseCase(event.word)
             is MainScreenStateUserEvent.SearchTextChanged -> searchText.update { event.text }
@@ -53,7 +53,10 @@ class MainScreenViewModel(
 
     private fun combineFlows() {
         executeSuspend {
-            combine(allWords, searchText) { allWords, searchText ->
+            combine(
+                allWords, searchText
+            ) { allWords, searchText ->
+                println("allWords, $allWords")
                 MainScreenState.Success(
                     MainScreenUiData(
                         words = allWords,

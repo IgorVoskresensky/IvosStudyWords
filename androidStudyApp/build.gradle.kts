@@ -46,5 +46,6 @@ dependencies {
     implementation(libs.compose.shapes)
     implementation(libs.androidx.activity.compose)
     implementation(libs.koin.compose)
+    implementation(libs.koin.core)
     debugImplementation(libs.compose.ui.tooling)
 }

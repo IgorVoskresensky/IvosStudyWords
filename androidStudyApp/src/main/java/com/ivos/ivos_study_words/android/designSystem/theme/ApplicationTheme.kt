@@ -1,4 +1,4 @@
-package com.ivos.ivos_study_words.android
+package com.ivos.ivos_study_words.android.designSystem.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

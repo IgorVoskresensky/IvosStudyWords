@@ -1,9 +1,7 @@
 CREATE TABLE IF NOT EXISTS words(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     word TEXT NOT NULL,
-    translation TEXT NOT NULL,
     language_code TEXT NOT NULL,
-    example_sentence TEXT,
     created_at INTEGER DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -14,16 +12,17 @@ getWordById:
 SELECT * FROM words WHERE id = ?;
 
 insertWord:
-INSERT OR REPLACE INTO words (word, translation, language_code, example_sentence)
-VALUES (?, ?, ?, ?);
+INSERT OR REPLACE INTO words (word, language_code)
+VALUES (?, ?);
 
 searchWords:
-SELECT * FROM words
-WHERE (word LIKE '%' || ? || '%' OR translation LIKE '%' || ? || '%')
-AND language_code = ?;
+SELECT * FROM words WHERE word LIKE '%' || ? || '%';
 
 getWordsByLanguage:
 SELECT * FROM words WHERE language_code = ?;
 
 deleteWordById:
 DELETE FROM words WHERE id = ?;
+
+getLastId:
+SELECT last_insert_rowid();

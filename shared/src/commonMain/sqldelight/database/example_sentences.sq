@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS example_sentences (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word_id INTEGER NOT NULL,
+    example_sentence TEXT NOT NULL,
+    FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
+);
+
+insertExamples:
+INSERT INTO example_sentences (word_id, example_sentence) VALUES (?, ?);
+
+getExamplesById:
+SELECT * FROM example_sentences WHERE word_id = ?;
