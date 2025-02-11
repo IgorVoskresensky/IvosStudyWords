@@ -23,9 +23,6 @@ class UserProgressRepositoryImpl(db: IvosWordsDatabase) : UserProgressRepository
     override fun insertProgress(progress: UserProgressModel) = progress.run {
         queries.insertProgress(
             word_id = wordId,
-            repetition_count = repetitionCount.toLong(),
-            last_reviewed = lastReviewed,
-            success_rate = successRate,
         )
     }
 

@@ -2,13 +2,13 @@ CREATE TABLE IF NOT EXISTS user_progress(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     word_id INTEGER NOT NULL UNIQUE,
     repetition_count INTEGER DEFAULT 0,
-    last_reviewed INTEGER,
+    last_reviewed INTEGER DEFAULT CURRENT_TIMESTAMP,
     success_rate REAL DEFAULT 0.0,
     FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
 );
 insertProgress:
-INSERT OR REPLACE INTO user_progress (word_id, repetition_count, last_reviewed, success_rate)
-VALUES (?, ?, ?, ?);
+INSERT OR REPLACE INTO user_progress (word_id)
+VALUES (?);
 
 -- 2. Получить прогресс по слову
 getProgressByWordId:
